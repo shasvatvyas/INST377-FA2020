@@ -23,7 +23,7 @@
                     <li><label for="message">Text field</label>
                         <textarea name="message" id="message" cols="33" rows="10">This is some default message text.</textarea></li>
                     <li>
-                        <p>
+                        <p class="checkbox-list-label">
                             Age
                         </p>
                         <ul class='flex-inner'>
@@ -37,10 +37,20 @@
                     </li>
                     <li>
                         <button class="button" id="submit_button" name="submit_button" type="submit">Submit form</button>
+                        <button onClick="testFunction()" class="button" id="activate" name="activate" type="button">Activate</button>
                     </li>
                 </ul>
             </form>
         </div>
     </div>
+    <script>
+        function testFunction() {
+            fetch('/api')
+            .then((response) => response.text())
+            .then((response) => {
+                console.log("Shasvat Vyas");
+            })
+        }
+    </script>
 </body>
 </html>
