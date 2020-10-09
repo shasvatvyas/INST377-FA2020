@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Shasvat Vyas Lab 5</title>
+    <title>Shasvat Vyas Lab 4</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="header">
-                <h1>Shasvat Vyas Lab 5</h1>
+                <h1>Shasvat Vyas Lab 4</h1>
             </div>
             <form action="/api" method="post">
                 <ul class="flex-outer">
@@ -49,6 +49,25 @@
             .then((response) => response.text())
             .then((response) => {
                 console.log("Shasvat Vyas");
+
+                const body=document.querySelector("body");
+                document.body.style.backgroundColor="red";
+                
+                const header= document.querySelector(".header h1");
+                header.textContent="Lab 5 for Shasvat Vyas";
+
+                const newAge= document.querySelector(".checkbox-list-label");
+                newAge.textContent="Fruits";
+
+                const checks = document.querySelectorAll('.flex-inner li label')
+                const fruitArray = ['apple', 'Kiwi', 'pomelo']
+                checks.forEach((check, i) => {
+                   
+                    check.innerText = fruitArray[i];
+                })
+                const mar=document.querySelector(".flex-outer");
+                mar.style.margin="0 auto";
+
             })
         }
     </script>
