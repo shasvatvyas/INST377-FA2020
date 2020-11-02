@@ -1,39 +1,61 @@
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
-  return list;
+  const categoryArray = [];
+  const result = {};
+  for (let i = 0; i < restaurantList.length; i += 1) {
+    categoryArray.push(restaurantList[i].category);
+
+  }
+  for (let i = 0; i < categoryArray.length; i += 1) {
+    if (!result[categoryArray[i]]) {
+      result[categoryArray[i]] = 0;
+    }
+    result[categoryArray[i]] += 1;
+  }
+  const reply = Object.keys(result).map((category) => ({
+    y: result[category],
+    label: category
+  }));
+  console.log('reply', reply);
+  return reply;
 }
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-  CanvasJS.addColorSet('customColorSet1', [
-    // add an array of colors here https://canvasjs.com/docs/charts/chart-options/colorset/
-  ]);
-
-  return {
+  // CanvasJS.addColorSet('customColorSet1', [
+  // return {
+  // };
+  const chart = new CanvasJS.Chart('chartContainer', {
     animationEnabled: true,
-    colorSet: 'customColorSet1',
+
     title: {
-      text: 'Change This Title'
+      text: 'Fortune 500 Companies by Country'
     },
     axisX: {
-      interval: 1,
-      labelFontSize: 12
+      interval: 1
     },
     axisY2: {
       interlacedColor: 'rgba(1,77,101,.2)',
       gridColor: 'rgba(1,77,101,.1)',
-      title: 'Change This Title',
-      labelFontSize: 12,
-      scaleBreaks: {customBreaks: []} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      title: 'Number of Companies'
     },
     data: [{
       type: 'bar',
-      name: 'restaurants',
+      name: 'companies',
       axisYType: 'secondary',
+      color: '#014D65',
       dataPoints: datapointsFromRestaurantsList
+        
+      
     }]
-  };
+  });
+  chart.render();
+
 }
+
+
+
+
 
 function runThisWithResultsFromServer(jsonFromServer) {
   console.log('jsonFromServer', jsonFromServer);
@@ -43,7 +65,8 @@ function runThisWithResultsFromServer(jsonFromServer) {
   // Instantiate your chart
   const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
   const options = makeYourOptionsObject(reorganizedData);
-  const chart = new CanvasJS.Chart('chartContainer', options);
+  // const chart = new CanvasJS.Chart('chartContainer', options);
+
   chart.render();
 }
 
