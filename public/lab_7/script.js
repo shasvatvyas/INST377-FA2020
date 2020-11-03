@@ -22,23 +22,52 @@ function convertRestaurantsToCategories(restaurantList) {
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-  // CanvasJS.addColorSet('customColorSet1', [
-  // return {
-  // };
-  const chart = new CanvasJS.Chart('chartContainer', {
+  console.log("makeYourOptionsObject");
+
+  CanvasJS.addColorSet('customColorSet1', ['#2F4F4F', '#008080', '#2E8B57']);
+  return {
+  
+  
     animationEnabled: true,
+    colorSet: 'customColorSet1',
 
     title: {
-      text: 'Fortune 500 Companies by Country'
+      text: 'Places To Eat Out In Future'
     },
     axisX: {
-      interval: 1
+      interval: 1,
+      labelFontSize: 12
+
     },
     axisY2: {
       interlacedColor: 'rgba(1,77,101,.2)',
       gridColor: 'rgba(1,77,101,.1)',
-      title: 'Number of Companies'
+      title: 'Restaurants By Category',
+      labelFontSize: 12,
+      scaleBreaks: {customBreaks: [
+        {
+          type: "zigzag",
+          startValue: 40,
+          endValue: 50,
+          color: "red"
+        },
+        {
+          type: "zigzag",
+          startValue: 85,
+          endValue: 100,
+          color: "red" 
+        },
+      {
+        type: "zigzag",
+          startValue: 140,
+          endValue: 175,
+          color: "red"
+      }
+
+
+      ]}
     },
+
     data: [{
       type: 'bar',
       name: 'companies',
@@ -48,8 +77,8 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
         
       
     }]
-  });
-  chart.render();
+  };
+  
 
 }
 
@@ -65,7 +94,7 @@ function runThisWithResultsFromServer(jsonFromServer) {
   // Instantiate your chart
   const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
   const options = makeYourOptionsObject(reorganizedData);
-  // const chart = new CanvasJS.Chart('chartContainer', options);
+  const chart = new CanvasJS.Chart('chartContainer', options);
 
   chart.render();
 }
